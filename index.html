@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 Sensor Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Live Data Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header Section -->
+        <header>
+            <div class="header-left">
+                <h1><i class="fa-solid fa-microchip"></i> ESP32 Dashboard</h1>
+                <span id="connection-status" class="status badge online">Connecting...</span>
+            </div>
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </header>
+
+        <!-- Main Dashboard Grid -->
+        <main class="grid-container">
+            <!-- Temperature Card -->
+            <div class="card" id="temp-card">
+                <div class="card-header">
+                    <div class="icon-wrapper temp">
+                        <i class="fa-solid fa-temperature-half"></i>
+                    </div>
+                    <h2>Temperature</h2>
+                </div>
+                <div class="card-body">
+                    <div class="value-display">
+                        <span id="temp-value">--</span>
+                        <span class="unit">°C</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current Card -->
+            <div class="card" id="current-card">
+                <div class="card-header">
+                    <div class="icon-wrapper current">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h2>Current</h2>
+                </div>
+                <div class="card-body">
+                    <div class="value-display">
+                        <span id="current-value">--</span>
+                        <span class="unit">A</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vibration Card -->
+            <div class="card" id="vibration-card">
+                <div class="card-header">
+                    <div class="icon-wrapper motion">
+                        <i class="fa-solid fa-house-crack"></i>
+                    </div>
+                    <h2>Vibration</h2>
+                </div>
+                <div class="card-body">
+                    <div class="status-display" id="vibration-status">
+                         <span class="status-text normal">Normal</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gas Card -->
+            <div class="card" id="gas-card">
+                <div class="card-header">
+                    <div class="icon-wrapper gas">
+                        <i class="fa-solid fa-smog"></i>
+                    </div>
+                    <h2>Gas / Smoke</h2>
+                </div>
+                <div class="card-body">
+                    <div class="status-display" id="gas-status">
+                         <span class="status-text normal">Normal</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Live Charts Section -->
+        <section class="charts-section">
+            <div class="chart-card">
+                <h3>Temperature History</h3>
+                <canvas id="tempChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Current History</h3>
+                <canvas id="currentChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Offline Warning Banner -->
+        <div id="offline-banner" class="banner hidden">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <p>ESP32 is offline or unreachable. Please check your connection.</p>
+            <div class="loader"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
